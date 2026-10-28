@@ -1,0 +1,48 @@
+rules_version = '2';
+// Yakir fit security rules.
+// Paste into Firebase console > Firestore Database > Rules > Publish.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isCoach() {
+      return signedIn() && request.auth.token.email != null
+        && request.auth.token.email.lower() in ['yakir17177@gmail.com'];
+    }
+    function isMe(uid) { return signedIn() && request.auth.uid == uid; }
+
+    // Coach's public settings (hours, off days, phone, groups, message): everyone reads, coach writes
+    match /pub/{doc} {
+      allow read: if signedIn();
+      allow write: if isCoach();
+    }
+    // Trainee's own data: only the trainee and the coach
+    match /members/{uid} {
+      allow read, write: if isMe(uid) || isCoach();
+    }
+    // Coach-only data (approval, card, plan, sessions): trainee reads own
+    match /coach/{uid} {
+      allow read: if isMe(uid) || isCoach();
+      allow write: if isCoach();
+    }
+    // Progress photos: owner and coach
+    match /photos/{id} {
+      allow read: if isCoach() || (signedIn() && resource.data.owner == request.auth.uid);
+      allow create: if signedIn()
+        && (request.resource.data.owner == request.auth.uid || isCoach())
+        && request.resource.data.data is string
+        && request.resource.data.data.size() < 1000000;
+      allow update: if isCoach();
+      allow delete: if isCoach() || (signedIn() && resource.data.owner == request.auth.uid);
+    }
+    // Group class sign-ups: {o: uid, k: date_classId, d: date}. No names, only ids,
+    // so trainees can count free spots. A trainee adds / removes only himself.
+    match /gsign/{id} {
+      allow read: if signedIn();
+      allow create: if isCoach() || (signedIn()
+        && request.resource.data.o == request.auth.uid
+        && id == request.resource.data.k + '_' + request.auth.uid);
+      allow update: if isCoach();
+      allow delete: if isCoach() || (signedIn() && resource.data.o == request.auth.uid);
+    }
+  }
+}

@@ -1,0 +1,118 @@
+/* --- auth & identity --- */
+.auth{max-width:440px;margin:0 auto;padding-block:28px 40px;display:flex;flex-direction:column;gap:16px}
+.auth-hero{text-align:center;padding-block:18px 6px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.auth-hero p{margin:4px 0 0;max-width:30ch}
+.logo-mark.big{width:76px;height:76px;box-shadow:0 0 0 8px rgba(255,106,43,.12),0 20px 50px -12px rgba(255,106,43,.6)}
+.logo-mark.big svg{width:38px;height:38px}
+.auth-word{font-family:var(--display);font-weight:700;font-size:72px;line-height:.9;letter-spacing:.02em;direction:ltr;margin-top:10px}
+.auth-word b{color:var(--accent);font-weight:700}
+.auth-card{padding:18px;display:flex;flex-direction:column;gap:12px}
+.auth-seg{align-self:center;margin-bottom:4px}
+.auth-seg button{padding:8px 22px;font-size:14px}
+.auth-err{min-height:1.2em;font-size:13px;color:var(--bad);margin:-4px 0 8px}
+.auth-err.ok{color:var(--good)}
+.linkish{background:none;border:0;color:var(--muted);font-size:13px;cursor:pointer;text-decoration:underline;align-self:center;padding:4px}
+.or{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+.demo-card{border-color:rgba(255,193,69,.35)}
+.btn:disabled{opacity:.6;cursor:wait}
+.role-card{display:flex;align-items:center;gap:14px;width:100%;text-align:start;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:18px;cursor:pointer;color:var(--fg)}
+.role-card:hover{border-color:var(--accent)}
+.role-card b{display:block;font-family:var(--display);font-size:34px;line-height:1}
+.role-ic{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#1a0f06;flex:none}
+.me{position:relative;cursor:pointer;flex:none;display:block}
+.me input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.me-cam{position:absolute;bottom:-2px;left:-2px;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#1a0f06;display:grid;place-items:center;border:2px solid var(--bg)}
+.me-name{font-family:var(--display);font-size:30px;font-weight:700;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+header.top{gap:10px}
+/* trainee week grid */
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.wday{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:8px 4px;min-height:92px;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.wday.today{border-color:var(--accent)}
+.wday-h{display:flex;flex-direction:column;align-items:center;line-height:1;color:var(--muted);font-size:11px;gap:2px;margin-bottom:2px}
+.wday-h b{font-family:var(--display);font-size:22px;color:var(--fg)}
+.wslot{font-size:11px;font-weight:800;border-radius:999px;padding:2px 5px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#1a0f06;width:100%;text-align:center}
+.wslot.pend{background:rgba(255,193,69,.16);color:var(--warn)}
+.wslot.no{background:rgba(255,90,115,.14);color:var(--bad);text-decoration:line-through}
+@media (max-width:380px){.auth-word{font-size:60px}.wslot{font-size:10px;padding:2px 2px}}
+/* video + achievements */
+.icon-btn.vid{background:rgba(79,179,255,.14);border-color:rgba(79,179,255,.35);color:var(--cool);text-decoration:none}
+.icon-btn.vid svg{width:14px;height:14px}
+.streak{display:flex;align-items:center;gap:14px;background:radial-gradient(120% 140% at 100% 0%,rgba(255,176,58,.18),transparent 60%),var(--surface)}
+.flame{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--surface2);color:var(--muted);flex:none}
+.flame.on{background:linear-gradient(160deg,#ffb03a,#ff6a2b);color:#1a0f06;box-shadow:0 8px 26px -8px rgba(255,106,43,.8)}
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.badge{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;min-width:0;opacity:.55}
+.badge.on{opacity:1;border-color:rgba(255,176,58,.45);background:radial-gradient(100% 80% at 50% 0%,rgba(255,176,58,.14),transparent 70%),var(--surface)}
+.badge-ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--surface2);color:var(--muted);font-size:11px;font-weight:800}
+.badge.on .badge-ic{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#1a0f06}
+.badge b{font-size:13px;line-height:1.2}
+.badge span:last-child{font-size:11px;color:var(--muted);line-height:1.3}
+.toast.badge{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#1a0f06}
+/* exercise rows: coach note, trainee note, action buttons */
+.ex-btns{display:flex;gap:6px;align-items:center;flex:none}
+.ex-note{font-size:13px;margin-top:3px;padding-inline-start:8px;border-inline-start:2px solid var(--accent)}
+.ex-mynote{font-size:12.5px;color:#c79bff;margin-top:3px}
+/* workout summary: volume, comparison, body map, muscle share */
+.wo-vol{font-family:var(--display);font-weight:700;font-size:54px;line-height:1;color:var(--accent2)}
+.wo-vol span{font-size:24px;color:var(--fg)}
+.wo-like{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;max-width:130px}
+.wo-emo{font-size:38px;line-height:1}
+.bodymap{display:block;width:100%;max-width:300px;height:auto;margin:6px auto 0}
+.wo-mus{display:flex;flex-direction:column;gap:7px;margin-top:8px}
+.mrow{display:grid;grid-template-columns:78px 1fr 40px;gap:10px;align-items:center;font-size:13px}
+.mrow b{text-align:end}
+.mrow .bar{height:7px}
+.medal-ic{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#1a0f06}
+/* muscle picker in the exercise editor */
+.mus-pick{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.mchip{border:1px solid var(--line);background:var(--surface2);color:var(--muted);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700;cursor:pointer}
+.mchip.p{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#1a0f06;border-color:transparent}
+.mchip.s{background:rgba(255,106,43,.14);color:var(--accent2);border-color:rgba(255,106,43,.45)}
+/* embedded demo video */
+.vid-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000}
+.vid-frame.tall{aspect-ratio:9/16;width:min(100%,calc(62vh * 9 / 16));margin:0 auto}
+.vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* brand logo (Yakir Levi) */
+.logo-img{height:30px;width:auto;display:block}
+.auth-logo{display:block;width:min(320px,85%);height:auto;margin:0 auto 6px}
+/* PDF preview inside the app */
+.pdf-prev{display:flex;flex-direction:column;gap:12px}
+.pdf-prev img{width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 6px 20px -8px #000}
+/* income: monthly bars (single series, selected month emphasized) */
+.inc-bars{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;height:150px;margin-top:16px}
+.inc-bar{background:none;border:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;cursor:pointer;color:var(--muted);min-width:0}
+.inc-val{font-size:11px;font-weight:700;color:var(--fg);min-height:15px;white-space:nowrap}
+.inc-col{flex:1;width:100%;max-width:34px;display:flex;align-items:flex-end;border-bottom:1px solid var(--line)}
+.inc-col i{display:block;width:100%;border-radius:4px 4px 0 0;background:rgba(255,106,43,.32)}
+.inc-bar.on .inc-col i{background:linear-gradient(var(--accent2),var(--accent))}
+.inc-bar:hover .inc-col i{background:rgba(255,106,43,.55)}
+.inc-bar.on:hover .inc-col i{background:linear-gradient(var(--accent2),var(--accent))}
+.inc-m{font-size:11.5px}
+.inc-bar.on .inc-m{color:var(--fg);font-weight:700}
+/* billing: price list rows, card quick-picks */
+.price-row{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end}
+.cpick{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+/* online videos */
+.vid-el{display:block;width:100%;max-height:62vh;border-radius:18px;background:#000}
+.upbar{height:8px;border-radius:999px;background:var(--surface2);overflow:hidden;margin:-4px 0 14px}
+.upbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .2s}
+.ex-vid{font-size:12.5px;color:var(--accent2);margin-top:3px;display:flex;align-items:center;gap:5px}
+.fb-box{background:rgba(255,176,58,.08);border-inline-start:3px solid var(--accent2);border-radius:12px;padding:10px 12px}
+.score-big{font-family:var(--display);font-weight:700;font-size:40px;line-height:1;color:var(--accent2)}
+.score-big span{font-size:20px;color:var(--muted)}
+.score-pick{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.sc{position:relative}
+.sc input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.sc span{display:grid;place-items:center;height:42px;border-radius:14px;background:var(--surface2);border:1px solid var(--line);font-weight:800;font-size:16px}
+.sc input:checked+span{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#1a0f06;border-color:transparent}
+.sc input:focus-visible+span{outline:2px solid var(--cool);outline-offset:2px}
+/* join form: personal vs online */
+.choice{border:0;padding:0;margin:0 0 14px;min-width:0}
+.choice legend{font-size:13px;color:var(--muted);font-weight:700;margin-bottom:8px;padding:0}
+.choice-opt{position:relative;display:block;margin-bottom:8px;cursor:pointer}
+.choice-opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.choice-opt>span{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:16px;border:1px solid var(--line);background:var(--bg)}
+.choice-opt input:checked+span{border-color:var(--accent);background:rgba(255,106,43,.08);box-shadow:inset 0 0 0 1px var(--accent)}
+.choice-opt input:focus-visible+span{outline:2px solid var(--cool);outline-offset:2px}
+.choice .choice-opt{font-size:15px;color:var(--fg);font-weight:400}
